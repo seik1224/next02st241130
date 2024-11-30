@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 const colors = [
@@ -10,6 +10,18 @@ const colors = [
   ];
 
 const Framer09 = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target : containerRef,
+        offset : ['start start', 'end end']
+    })
+
+    const x = useTransform(
+        scrollYProgress,
+        [0, 1],
+        ['0%', `-${(colors.length -1) * 100 }%`]
+    )
+
   return (
     <>
       <section className="h-screen flex items-center justify-center bg-gray-100">
@@ -18,7 +30,7 @@ const Framer09 = () => {
 
       <div className="h-[400vh]">
         <div className="sticky top-0 h-screen overflow-hidden">
-          <motion.div className="flex h-full items-center">
+          <motion.div className="flex h-full items-center" style={{x}}>
             {colors.map((color, index) => (
               <motion.div
                 key={index}
