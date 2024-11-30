@@ -16,9 +16,9 @@ const Framer09 = () => {
         <h1 className="text-4xl font-bold">상단 섹션</h1>
       </section>
 
-      <div ref={containerRef} className="h-[400vh]">
+      <div className="h-[400vh]">
         <div className="sticky top-0 h-screen overflow-hidden">
-          <motion.div className="flex h-full items-center" style={{ x }}>
+          <motion.div className="flex h-full items-center">
             {colors.map((color, index) => (
               <motion.div
                 key={index}
