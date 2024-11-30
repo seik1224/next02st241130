@@ -40,6 +40,20 @@ const Gsap01 = () => {
         })
     }
 
+    // fromTo 애니메이션
+    const handleClickBox3 = () => {
+        gsap.fromTo(
+            boxRef3.current,
+            { x : 300, opacity:0}, // 시작위치
+            { x:0, opacity:1, duration:1, ease: 'power2.out',
+                onStart : ()=> console.log('START'),
+                onComplete : ()=> console.log('END')
+            } // 종료위치
+        )
+    }
+
+    
+
   return (
     <>
         <div ref={boxRef1} className='w-40 h-40 bg-blue-500 cursor-pointer mb-4' onClick={handleClickBox1}>
@@ -48,7 +62,7 @@ const Gsap01 = () => {
         <div ref={boxRef2} className='w-40 h-40 bg-red-500 cursor-pointer mb-4' onClick={handleClickBox2}>
             from
         </div>
-        <div ref={boxRef3} className='w-40 h-40 bg-green-500 cursor-pointer mb-4'>
+        <div ref={boxRef3} className='w-40 h-40 bg-green-500 cursor-pointer mb-4' onClick={handleClickBox3}>
             fromTo
         </div>
         <div ref={boxRef4} className='w-40 h-40 bg-yellow-500 cursor-pointer mb-4'>
