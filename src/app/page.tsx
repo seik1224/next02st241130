@@ -31,7 +31,7 @@ export default function Home() {
       {/* <Framer04 /> */}
       {/* <Framer05 /> */}
       {/* <Framer06 /> */}
-      <Framer07 />
+      {/* <Framer07 /> */}
     </>
   );
 }
