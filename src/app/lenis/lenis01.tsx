@@ -1,19 +1,35 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Lenis from '@studio-freight/lenis';
 
 const Lenis01 = () => {
+    const lenisRef = useRef(null);
+    const targetRef = useRef(null);
+
+    useEffect(()=>{
+        const lenis = new Lenis({
+            duration : 5, // 스크롤 애니메이션 지속 시간 : 기본값 1.2
+            // 가속/감속
+            // easing : (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel : true, // 부드러운 스크롤 활성화
+        })
+
+        const raf = (time : number) => {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    },[])
+
   return (
     <>
     <div className="fixed top-0 left-0 flex gap-4">
         <button
           className="bg-slate-100 rounded-lg p-4 opacity-90"
-          onClick={stopScroll}
         >
           STOP
         </button>
         <button
           className="bg-slate-100 rounded-lg p-4 opacity-90"
-          onClick={startScroll}
         >
           ACTIVE
         </button>
@@ -24,9 +40,9 @@ const Lenis01 = () => {
         </div>
         <div className="w-full h-screen bg-blue-500 flex justify-center items-center">
           <div
-            ref={targetRef}
             className="target-element bg-red-500 size-28"
             style={{ transition: "opacity 1s ease-in-out" }}
+            ref = {targetRef}
           ></div>
         </div>
         <div className="w-full h-screen bg-green-500 flex justify-center items-center">
